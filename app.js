@@ -12,10 +12,11 @@ const bot = linebot({
 
 bot.on('message', (event) => {
   console.log(event.source.groupId)
-  event.reply('今日のミッションは、\nママ: 部屋掃除\nパパ: 朝顔の水やり\nこっきー: ピアノの練習\nです!').then((data) => {
-	 }).catch((err) => {
-		  // error
-	 })
+  console.log(event)
+  // event.reply('今日のミッションは、\nママ: 部屋掃除\nパパ: 朝顔の水やり\nこっきー: ピアノの練習\nです!').then((data) => {
+	 // }).catch((err) => {
+		//   console.log(err)
+	 // })
 })
 
 const app = express()
