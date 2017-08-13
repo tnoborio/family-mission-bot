@@ -7,6 +7,7 @@ var bot = linebot({
 })
 
 bot.on('message', function (event) {
+  console.log(event.source.groupId)
   event.reply("今日のミッションは、\nママ: 部屋掃除\nパパ: 朝顔の水やり\nこっきー: ピアノの練習\nです!").then(function (data) {
 	 }).catch(function (error) {
 		  // error
