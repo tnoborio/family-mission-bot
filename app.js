@@ -29,10 +29,11 @@ app.post('/post', (req, res) => {
   bot.post(groupId, {
     type: 'text',
     text: req.body.text
+  }).then((data) => {
+    res.send('ok')
   }).catch((err) => {
     console.log("err: " + err)
   })
-  res.send('ok')
 })
 
 app.listen(process.env.PORT || 5000)
