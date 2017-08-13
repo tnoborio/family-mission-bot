@@ -1,6 +1,11 @@
-const linebot = require('linebot')
+const express = require('express'),
+      linebot = require('linebot')
 
-var bot = linebot({
+const app = express()
+
+const groupId = process.env.GROUP_ID
+
+const bot = linebot({
   channelId: process.env.CHANNEL_ID,
   channelSecret: process.env.CHANNEL_SECRET,
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
@@ -14,5 +19,14 @@ bot.on('message', function (event) {
 	 })
 })
 
-bot.listen('/linewebhook', (process.env.PORT || 5000))
+app.post('/linewebhook', bot.parser())
 
+app.post('/post', (req, res) => {
+  console.log(req.body)
+  bot.post(groupId, {
+    type: "text",
+    text: req.body.text
+  })
+})
+
+app.listen(process.env.PORT || 5000)
