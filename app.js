@@ -1,8 +1,6 @@
 const express = require('express'),
       linebot = require('linebot')
 
-const app = express()
-
 const groupId = process.env.GROUP_ID
 
 const bot = linebot({
@@ -18,6 +16,9 @@ bot.on('message', function (event) {
 		  // error
 	 })
 })
+
+const app = express()
+app.use(express.bodyParser())
 
 app.post('/linewebhook', bot.parser())
 
