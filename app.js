@@ -1,4 +1,5 @@
 const express = require('express'),
+      bodyParser = require('body-parser'),
       linebot = require('linebot')
 
 const groupId = process.env.GROUP_ID
@@ -18,7 +19,10 @@ bot.on('message', function (event) {
 })
 
 const app = express()
-app.use(express.bodyParser())
+app.use( bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 app.post('/linewebhook', bot.parser())
 
