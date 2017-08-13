@@ -26,10 +26,7 @@ app.post('/linewebhook', bot.parser())
 
 app.post('/post', (req, res) => {
   console.log(req.body)
-  bot.post(groupId, {
-    type: 'text',
-    text: req.body.text
-  }).then((data) => {
+  bot.post(groupId, [req.body.text]).then((data) => {
     res.send('ok')
   }).catch((err) => {
     console.log("err: " + err)
